@@ -10,10 +10,6 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-//    public class Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount){
-//        this.Loa
-//    }
-
 
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
@@ -61,5 +57,16 @@ public class Transaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "date=" + date +
+                ", time=" + time +
+                ", description='" + description + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }
