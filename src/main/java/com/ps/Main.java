@@ -26,10 +26,11 @@ public class Main {
 //                    makePayment();
                     break;
                 case "l":
-//                    ledger();
+                    ledgerMenu();
                     break;
                 case "x":
                     System.out.println("You choose to exit");
+                    break;
                 default:
                     System.out.println("Command not found");
 
@@ -43,7 +44,41 @@ public class Main {
 
 
     }
+public static void ledgerMenu(){
+        String subMenuCommand;
 
+        do{
+            System.out.println("Which entry would you like this?");
+            System.out.println("A) All");
+            System.out.println("D) Deposit");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+
+            subMenuCommand = commandScanner.nextLine().toLowerCase();
+            switch(subMenuCommand){
+                case "a":
+//                    allEntries();
+                    break;
+                case "d":
+//                    depositMethod();
+                    break;
+                case "p":
+//                    paymentsMethod();
+                    break;
+                case "r":
+//                    reportsMethod();
+                    break;
+                case "h":
+                    System.out.println("Going back to home");
+                    break;
+                default:
+                    System.out.println("Command not found");
+
+            }
+
+        }while(!subMenuCommand.equals("h"));
+}
 
 
 }
