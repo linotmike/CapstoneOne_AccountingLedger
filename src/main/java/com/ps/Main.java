@@ -67,7 +67,7 @@ public static void ledgerMenu(){
 //                    paymentsMethod();
                     break;
                 case "r":
-//                    reportsMethod();
+                    reportsMenu();
                     break;
                 case "h":
                     System.out.println("Going back to home");
@@ -78,6 +78,48 @@ public static void ledgerMenu(){
             }
 
         }while(!subMenuCommand.equals("h"));
+}
+public static void reportsMenu(){
+        int menu;
+        do{
+            System.out.println("Welcome to the Reports Screen");
+            System.out.println("Please select a report screen to run");
+            System.out.println("1) Month to Date");
+            System.out.println("2) previous Month");
+            System.out.println("3) Year to Month");
+            System.out.println("4) previous Years");
+            System.out.println("5) Search by vendor");
+            System.out.println("0) Back");
+
+            menu = commandScanner.nextInt();
+            switch(menu){
+                case 1:
+                    //MonthToDate();
+                    break;
+                case 2:
+                    //previousMonth();
+                    break;
+                case 3:
+                    //yearToMonth();
+                    break;
+                case 4:
+                    //previousYears();
+                    break;
+                case 5:
+                    //SearchByVendor();
+                    break;
+                case 0:
+                    System.out.println("Going back...");
+                    break;
+                default:
+                    System.out.println("Command not found");
+
+
+            }
+
+
+
+        }while(menu != 0);
 }
 
 
