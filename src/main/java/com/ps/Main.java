@@ -1,15 +1,19 @@
 package com.ps;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Main {
     static Scanner commandScanner = new Scanner(System.in);
     static Scanner inputScanner = new Scanner(System.in);
+    static ArrayList<Transaction> transactions = new ArrayList<>();
+
     public static void main(String[] args) {
         String mainMenuCommand;
-        do{
+        do {
             System.out.println("Hello welcome to Account Ledger CLI Application");
             System.out.println("What would you like to do?");
             System.out.println("D) Add a deposit");
@@ -18,9 +22,9 @@ public class Main {
             System.out.println("X) Exit");
             mainMenuCommand = commandScanner.nextLine().toLowerCase();
 
-            switch(mainMenuCommand){
+            switch (mainMenuCommand) {
                 case "d":
-//                    addDeposit();
+                    addDeposit();
                     break;
                 case "p":
 //                    makePayment();
@@ -36,18 +40,15 @@ public class Main {
 
             }
 
-        }while(!mainMenuCommand.equals("x"));
-
-
-
-
+        } while (!mainMenuCommand.equals("x"));
 
 
     }
-public static void ledgerMenu(){
+
+    public static void ledgerMenu() {
         String subMenuCommand;
 
-        do{
+        do {
             System.out.println("Which entry would you like this?");
             System.out.println("A) All");
             System.out.println("D) Deposit");
@@ -56,7 +57,7 @@ public static void ledgerMenu(){
             System.out.println("H) Home");
 
             subMenuCommand = commandScanner.nextLine().toLowerCase();
-            switch(subMenuCommand){
+            switch (subMenuCommand) {
                 case "a":
 //                    allEntries();
                     break;
@@ -77,11 +78,12 @@ public static void ledgerMenu(){
 
             }
 
-        }while(!subMenuCommand.equals("h"));
-}
-public static void reportsMenu(){
+        } while (!subMenuCommand.equals("h"));
+    }
+
+    public static void reportsMenu() {
         int menu;
-        do{
+        do {
             System.out.println("Welcome to the Reports Screen");
             System.out.println("Please select a report screen to run");
             System.out.println("1) Month to Date");
@@ -92,7 +94,7 @@ public static void reportsMenu(){
             System.out.println("0) Back");
 
             menu = commandScanner.nextInt();
-            switch(menu){
+            switch (menu) {
                 case 1:
                     //MonthToDate();
                     break;
@@ -118,9 +120,28 @@ public static void reportsMenu(){
             }
 
 
+        } while (menu != 0);
+    }
 
-        }while(menu != 0);
-}
+    public static void addDeposit() {
+        System.out.println("Enter the Description");
+        String description = inputScanner.nextLine();
+        System.out.println("Enter the vendor");
+        String vendor = inputScanner.nextLine();
+        System.out.println("Please enter the Deposit amount");
+        double amount = inputScanner.nextDouble();
+
+        Transaction deposit = new Transaction(LocalDate.now(),LocalTime.now(),description,vendor,amount);
+        transactions.add(deposit);
+        System.out.println("Deposit added successfully");
+
+
+
+    }
+
+    public static void makePayment(){
+
+    }
 
 
 }
