@@ -27,7 +27,7 @@ public class Main {
                     addDeposit();
                     break;
                 case "p":
-//                    makePayment();
+                    makePayment();
                     break;
                 case "l":
                     ledgerMenu();
@@ -128,18 +128,43 @@ public class Main {
         String description = inputScanner.nextLine();
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
-        System.out.println("Please enter the Deposit amount");
-        double amount = inputScanner.nextDouble();
+        double amount;
+        do {
+            System.out.println("Please enter the Deposit amount");
+            amount = inputScanner.nextDouble();
+            if (amount <= 0) {
+                System.out.println("Please enter the payment amount");
 
-        Transaction deposit = new Transaction(LocalDate.now(),LocalTime.now(),description,vendor,amount);
+            }
+
+
+        } while (amount <= 0);
+
+        Transaction deposit = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactions.add(deposit);
         System.out.println("Deposit added successfully");
 
 
-
     }
 
-    public static void makePayment(){
+    public static void makePayment() {
+        System.out.println("Enter the Description");
+        String description = inputScanner.nextLine();
+        System.out.println("Enter the vendor");
+        String vendor = inputScanner.nextLine();
+        double amount;
+        do {
+            System.out.println("Please enter the payment amount");
+            amount = inputScanner.nextDouble();
+            if (amount <= 0) {
+                System.out.println("Enter a positive number");
+
+            }
+
+        } while (amount <= 0);
+
+        Transaction payment = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, -amount);
+        transactions.add(payment);
 
     }
 
