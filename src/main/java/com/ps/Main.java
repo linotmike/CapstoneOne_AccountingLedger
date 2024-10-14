@@ -49,7 +49,7 @@ public class Main {
         String subMenuCommand;
 
         do {
-            System.out.println("Which entry would you like this?");
+            System.out.println("Which entry would you like to see?");
             System.out.println("A) All");
             System.out.println("D) Deposit");
             System.out.println("P) Payments");
@@ -59,7 +59,7 @@ public class Main {
             subMenuCommand = commandScanner.nextLine().toLowerCase();
             switch (subMenuCommand) {
                 case "a":
-//                    allEntries();
+                    allEntries();
                     break;
                 case "d":
 //                    depositMethod();
@@ -165,8 +165,24 @@ public class Main {
 
         Transaction payment = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, -amount);
         transactions.add(payment);
+        System.out.println("Payment successfully made: " + payment);
 
     }
+
+    public static void allEntries() {
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transactions");
+        } else {
+            for (Transaction transaction : transactions) {
+                System.out.println(transaction);
+
+            }
+        }
+
+
+    }
+
+
 
 
 }
