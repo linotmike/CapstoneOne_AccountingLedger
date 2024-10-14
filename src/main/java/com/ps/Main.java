@@ -65,7 +65,7 @@ public class Main {
                     showDeposit();
                     break;
                 case "p":
-//                    paymentsMethod();
+                    showPayments();
                     break;
                 case "r":
                     reportsMenu();
@@ -126,6 +126,7 @@ public class Main {
     public static void addDeposit() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
+//        commandScanner.nextLine();
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
         double amount;
@@ -142,7 +143,7 @@ public class Main {
 
         Transaction deposit = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactions.add(deposit);
-        System.out.println("Deposit added successfully");
+        System.out.println("Deposit added successfully " + deposit);
 
 
     }
@@ -150,6 +151,7 @@ public class Main {
     public static void makePayment() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
+
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
         double amount;
@@ -181,6 +183,7 @@ public class Main {
 
 
     }
+
     public static void showDeposit() {
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
@@ -190,14 +193,26 @@ public class Main {
             Transaction transaction = transactions.get(i);
             if (transaction.getAmount() > 0) {
                 System.out.println("Here are the deposits!");
-                System.out.print(transaction);
+                System.out.print(transaction + "\n");
 
             }
         }
 
     }
 
+    public static void showPayments() {
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transactions");
 
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction.getAmount() < 0) {
+                System.out.println("Here are the payments!");
+                System.out.println(transaction);
+            }
+        }
+    }
 
 
 }
