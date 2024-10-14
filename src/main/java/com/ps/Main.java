@@ -62,7 +62,7 @@ public class Main {
                     allEntries();
                     break;
                 case "d":
-//                    depositMethod();
+                    showDeposit();
                     break;
                 case "p":
 //                    paymentsMethod();
@@ -179,6 +179,21 @@ public class Main {
             }
         }
 
+
+    }
+    public static void showDeposit() {
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transactions");
+
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction.getAmount() > 0) {
+                System.out.println("Here are the deposits!");
+                System.out.print(transaction);
+
+            }
+        }
 
     }
 
