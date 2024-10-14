@@ -96,7 +96,8 @@ public class Main {
             menu = commandScanner.nextInt();
             switch (menu) {
                 case 1:
-                    //MonthToDate();
+                    monthToDate();
+//                    System.out.println("testing");
                     break;
                 case 2:
                     //previousMonth();
@@ -210,6 +211,28 @@ public class Main {
             if (transaction.getAmount() < 0) {
                 System.out.println("Here are the payments!");
                 System.out.println(transaction);
+            }
+        }
+    }
+
+    public static void monthToDate() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startOfMonth = currentDate.withDayOfMonth(1);
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transactions");
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+//            if (transaction.getDate() >= startOfMonth && transaction.getDate() <= currentDate) {
+//                System.out.println(transaction);
+//
+//
+//            }
+            if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth)) &&
+                    (transaction.getDate().isEqual(currentDate) && transaction.getDate().isBefore(currentDate))) {
+                System.out.println(transaction);
+
+
             }
         }
     }
