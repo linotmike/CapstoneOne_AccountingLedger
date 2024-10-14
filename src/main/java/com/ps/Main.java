@@ -228,14 +228,24 @@ public class Main {
 //
 //
 //            }
-            if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth)) &&
-                    (transaction.getDate().isEqual(currentDate) && transaction.getDate().isBefore(currentDate))) {
+            if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth))
+                    && (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate))) {
                 System.out.println(transaction);
 
 
             }
         }
     }
+
+//    public static void previousMonth(){
+//        if(transactions.isEmpty()){
+//            System.out.println("There are no transaction");
+//
+//        }
+//         for(int i = 0; i < transactions.size(); i++){
+//
+//         }
+//    }
 
 
 }
