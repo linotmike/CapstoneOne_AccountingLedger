@@ -103,7 +103,7 @@ public class Main {
                     previousMonth();
                     break;
                 case 3:
-                    yearToMonth();
+                    yearToDate();
                     break;
                 case 4:
                     //previousYears();
@@ -259,7 +259,7 @@ public class Main {
         }
     }
 
-    public static void yearToMonth() {
+    public static void yearToDate() {
         LocalDate currentDate = LocalDate.now();
         LocalDate startOfYear = currentDate.withDayOfYear(1);
 
