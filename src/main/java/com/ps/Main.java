@@ -103,7 +103,7 @@ public class Main {
                     previousMonth();
                     break;
                 case 3:
-                    //yearToMonth();
+                    yearToMonth();
                     break;
                 case 4:
                     //previousYears();
@@ -239,7 +239,7 @@ public class Main {
     public static void previousMonth() {
         LocalDate currentDate = LocalDate.now();
         int currentMonth = currentDate.getMonthValue();
-        int previousMonth =  currentMonth - 1;
+        int previousMonth = currentMonth - 1;
 
 
         if (transactions.isEmpty()) {
@@ -249,16 +249,34 @@ public class Main {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
 
-            int transactionMonth = transaction.getDate().getMonthValue();
+            int transactionDate = transaction.getDate().getMonthValue();
 
-            if(transactionMonth == previousMonth ){
+            if (transactionDate == previousMonth) {
                 System.out.println(transaction);
             }
 
 
+        }
+    }
+
+    public static void yearToMonth() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startOfYear = currentDate.withDayOfYear(1);
+
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transactions");
+
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if ((transaction.getDate().isEqual(startOfYear) || transaction.getDate().isAfter(startOfYear)
+                    && transaction.getDate().isEqual(currentDate) || transaction.getDate().isEqual(currentDate))) ;
+            System.out.println(transaction);
 
 
         }
+
+
     }
 
 
