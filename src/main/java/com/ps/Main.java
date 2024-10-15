@@ -100,7 +100,7 @@ public class Main {
 //                    System.out.println("testing");
                     break;
                 case 2:
-                    //previousMonth();
+                    previousMonth();
                     break;
                 case 3:
                     //yearToMonth();
@@ -152,7 +152,6 @@ public class Main {
     public static void makePayment() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
-
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
         double amount;
@@ -228,8 +227,8 @@ public class Main {
 //
 //
 //            }
-            if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth))
-                    && (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate))) {
+            if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth)
+                    && (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate)))) {
                 System.out.println(transaction);
 
 
@@ -237,15 +236,57 @@ public class Main {
         }
     }
 
-//    public static void previousMonth(){
-//        if(transactions.isEmpty()){
-//            System.out.println("There are no transaction");
+    public static void previousMonth() {
+        LocalDate currentDate = LocalDate.now();
+        int currentMonth = currentDate.getMonthValue();
+        int previousMonth =  currentMonth - 1;
+
+
+        if (transactions.isEmpty()) {
+            System.out.println("There are no transaction");
+
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+
+            int transactionMonth = transaction.getDate().getMonthValue();
+
+            if(transactionMonth == previousMonth ){
+                System.out.println(transaction);
+            }
+
+
+
+
+        }
+    }
+
+
+//public static void previousMonth() {
+//    LocalDate currentDate = LocalDate.now();
+//    LocalDate startOfCurrentMonth = currentDate.withDayOfMonth(1);//fisrt day of the month
+//    LocalDate startOfPreviousMonth = startOfCurrentMonth.minusMonths(1); //first day of the previous month
+//    LocalDate lastDayOfPreviousMonth = startOfPreviousMonth.minusDays(1);// last day of the previous month
 //
-//        }
-//         for(int i = 0; i < transactions.size(); i++){
 //
-//         }
+//    if (transactions.isEmpty()) {
+//        System.out.println("There are no transaction");
+//
 //    }
+//    for (int i = 0; i < transactions.size(); i++) {
+//        Transaction transaction = transactions.get(i);
+//
+//     if ((transaction.getDate().isEqual(startOfPreviousMonth) || transaction.getDate().isAfter(startOfPreviousMonth) &&
+//                    transaction.getDate().isEqual(lastDayOfPreviousMonth) || transaction.getDate().isBefore(lastDayOfPreviousMonth)
+//
+//            )) {
+//                System.out.println(transaction);
+//            }
+//
+//
+//
+//    }
+//}
 
 
 }
