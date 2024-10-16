@@ -3,6 +3,7 @@ package com.ps;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -93,7 +94,7 @@ public class Main {
     }
 
     public static void reportsMenu() {
-        int menu;
+        int reportsMenuCommand;
         do {
             System.out.println("Welcome to the Reports Screen");
             System.out.println("Please select a report screen to run");
@@ -103,9 +104,15 @@ public class Main {
             System.out.println("4) previous Years");
             System.out.println("5) Search by vendor");
             System.out.println("0) Back");
+            try{
+            reportsMenuCommand = commandScanner.nextInt();
 
-            menu = commandScanner.nextInt();
-            switch (menu) {
+            } catch (InputMismatchException ime){
+                reportsMenuCommand = 0;
+
+            }
+
+            switch (reportsMenuCommand) {
                 case 1:
                     monthToDate();
 //                    System.out.println("testing");
@@ -126,13 +133,13 @@ public class Main {
                     System.out.println("Going back...");
                     break;
                 default:
-                    System.out.println("Command not found");
+                    System.out.println("Command not found please try again");
 
 
             }
 
 
-        } while (menu != 0);
+        } while (reportsMenuCommand != 0);
     }
 
     public static void addDeposit() {
@@ -214,7 +221,6 @@ public class Main {
     public static void showPayments() {
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
-
         }
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
