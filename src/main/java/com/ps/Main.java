@@ -216,17 +216,13 @@ public class Main {
 
     public static void monthToDate() {
         LocalDate currentDate = LocalDate.now();
-        LocalDate startOfMonth = currentDate.withDayOfMonth(1);
+        LocalDate startOfMonth = currentDate.withDayOfMonth(1);// first day of the month
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
         }
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
-//            if (transaction.getDate() >= startOfMonth && transaction.getDate() <= currentDate) {
-//                System.out.println(transaction);
-//
-//
-//            }
+
             if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth)
                     && (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate)))) {
                 System.out.println(transaction);
@@ -239,7 +235,18 @@ public class Main {
     public static void previousMonth() {
         LocalDate currentDate = LocalDate.now();
         int currentMonth = currentDate.getMonthValue();
-        int previousMonth = currentMonth - 1;
+        int currentYear = currentDate.getYear();
+        int previousMonth;
+        int previousYear = currentYear;
+
+        if (currentMonth == 1) {
+            previousMonth = 12;
+            previousYear = currentYear - 1;
+
+        } else {
+            previousMonth = currentMonth - 1;
+
+        }
 
 
         if (transactions.isEmpty()) {
@@ -249,9 +256,9 @@ public class Main {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
 
-            int transactionDate = transaction.getDate().getMonthValue();
+            LocalDate transactionDate = transaction.getDate();
 
-            if (transactionDate == previousMonth) {
+            if (transactionDate.getMonthValue() == previousMonth && transactionDate.getYear() == previousYear) {
                 System.out.println(transaction);
             }
 
@@ -265,17 +272,23 @@ public class Main {
 
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
+            return;
 
         }
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
-            if ((transaction.getDate().isEqual(startOfYear) || transaction.getDate().isAfter(startOfYear)
-                    && transaction.getDate().isEqual(currentDate) || transaction.getDate().isEqual(currentDate))) ;
-            System.out.println(transaction);
+            if ((transaction.getDate().isEqual(startOfYear) || transaction.getDate().isAfter(startOfYear)) &&
+                    (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate))) {
+                System.out.println(transaction);
+            }
 
 
         }
 
+
+    }
+
+    public static void previousYear() {
 
     }
 
