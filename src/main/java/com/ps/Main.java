@@ -61,7 +61,13 @@ public class Main {
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
-            subMenuCommand = commandScanner.nextLine().toLowerCase();
+            try{
+            subMenuCommand = commandScanner.nextLine().toLowerCase().trim();
+
+            }catch(Exception e){
+                subMenuCommand = "h";
+            }
+
             switch (subMenuCommand) {
                 case "a":
                     allEntries();
