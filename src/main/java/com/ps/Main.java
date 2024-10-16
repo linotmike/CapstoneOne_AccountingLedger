@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         String mainMenuCommand;
+
         do {
             System.out.println("Hello welcome to Account Ledger CLI Application");
             System.out.println("What would you like to do?");
@@ -20,7 +21,11 @@ public class Main {
             System.out.println("P) Make Payment");
             System.out.println("L) Ledger");
             System.out.println("X) Exit");
-            mainMenuCommand = commandScanner.nextLine().toLowerCase();
+            try {
+                mainMenuCommand = commandScanner.nextLine().toLowerCase().trim();
+            }catch (Exception e) {
+                mainMenuCommand = "x";
+            }
 
             switch (mainMenuCommand) {
                 case "d":
@@ -289,6 +294,7 @@ public class Main {
     }
 
     public static void previousYear() {
+
 
     }
 
