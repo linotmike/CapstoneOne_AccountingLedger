@@ -248,10 +248,32 @@ public class Main {
         } while (amount <= 0);
 
 
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("hh:mm:ss");
+
+        String formattedDate = date.format(df);
+        String formattedTime = time.format(tf);
         Transaction payment = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, -amount);
         transactions.add(payment);
         System.out.println("Payment successfully made: " + payment);
 
+        try{
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv",true));
+        bufferedWriter.write(String.format("\n%s|%s|%s|%s|%f",
+                formattedDate,
+                formattedTime,
+                payment.getDescription(),
+                payment.getVendor(),
+                payment.getAmount()
+        ));
+        bufferedWriter.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void allEntries() {
