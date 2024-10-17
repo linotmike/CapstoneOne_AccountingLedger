@@ -1,9 +1,12 @@
 package com.ps;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -104,7 +107,7 @@ public class Main {
             System.out.println("Please select a report screen to run");
             System.out.println("1) Month to Date");
             System.out.println("2) previous Month");
-            System.out.println("3) Year to Month");
+            System.out.println("3) Year to Date");
             System.out.println("4) previous Years");
             System.out.println("5) Search by vendor");
             System.out.println("0) Back");
@@ -198,10 +201,32 @@ public class Main {
 
 
         } while (amount <= 0);
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("hh:mm:ss");
+
+        String formattedDate = date.format(df);
+        String formattedTime = time.format(tf);
+
 
         Transaction deposit = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactions.add(deposit);
         System.out.println("Deposit added successfully " + deposit);
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+            bufferedWriter.write(String.format("\n%s|%s|%s|%s|%f",
+                    formattedDate,
+                    formattedTime,
+                    deposit.getDescription(),
+                    deposit.getVendor(),
+                    deposit.getAmount()
+            ));
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -221,6 +246,7 @@ public class Main {
             }
 
         } while (amount <= 0);
+
 
         Transaction payment = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, -amount);
         transactions.add(payment);
