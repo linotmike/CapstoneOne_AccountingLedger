@@ -1,5 +1,7 @@
 package com.ps;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -8,11 +10,13 @@ import java.util.Scanner;
 
 
 public class Main {
+
     static Scanner commandScanner = new Scanner(System.in);
     static Scanner inputScanner = new Scanner(System.in);
     static ArrayList<Transaction> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
+        loadTransactionFromFile();
         String mainMenuCommand;
 
         do {
@@ -24,7 +28,7 @@ public class Main {
             System.out.println("X) Exit");
             try {
                 mainMenuCommand = commandScanner.nextLine().toLowerCase().trim();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 mainMenuCommand = "x";
             }
 
@@ -62,10 +66,10 @@ public class Main {
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
-            try{
-            subMenuCommand = commandScanner.nextLine().toLowerCase().trim();
+            try {
+                subMenuCommand = commandScanner.nextLine().toLowerCase().trim();
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 subMenuCommand = "h";
             }
 
@@ -104,10 +108,10 @@ public class Main {
             System.out.println("4) previous Years");
             System.out.println("5) Search by vendor");
             System.out.println("0) Back");
-            try{
-            reportsMenuCommand = commandScanner.nextInt();
+            try {
+                reportsMenuCommand = commandScanner.nextInt();
 
-            } catch (InputMismatchException ime){
+            } catch (InputMismatchException ime) {
                 reportsMenuCommand = 0;
 
             }
@@ -140,6 +144,41 @@ public class Main {
 
 
         } while (reportsMenuCommand != 0);
+    }
+
+    public static void loadTransactionFromFile() {
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("transactions.csv"));
+            String firstLine = bufferedReader.readLine();
+            String input;
+            while ((input = bufferedReader.readLine()) != null) {
+                String[] transactionsArr = input.split("\\|");
+                if (transactionsArr.length != 5) {
+                    System.out.println("Invalid Format " + input);
+                    continue;
+
+                }
+                try {
+                    LocalDate date = LocalDate.parse(transactionsArr[0].trim());
+                    LocalTime time = LocalTime.parse(transactionsArr[1].trim());
+                    String description = transactionsArr[2];
+                    String vendor = transactionsArr[3];
+                    double amount = Double.parseDouble(transactionsArr[4]);
+
+                    transactions.add(new Transaction(date, time, description, vendor, amount));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            bufferedReader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void addDeposit() {
