@@ -260,18 +260,18 @@ public class Main {
         transactions.add(payment);
         System.out.println("Payment successfully made: " + payment);
 
-        try{
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv",true));
-        bufferedWriter.write(String.format("\n%s|%s|%s|%s|%f",
-                formattedDate,
-                formattedTime,
-                payment.getDescription(),
-                payment.getVendor(),
-                payment.getAmount()
-        ));
-        bufferedWriter.close();
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+            bufferedWriter.write(String.format("\n%s|%s|%s|%s|%f",
+                    formattedDate,
+                    formattedTime,
+                    payment.getDescription(),
+                    payment.getVendor(),
+                    payment.getAmount()
+            ));
+            bufferedWriter.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -396,6 +396,7 @@ public class Main {
 
 
     }
+
 
 
 //public static void previousMonth() {
