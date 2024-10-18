@@ -480,7 +480,12 @@ public class Main {
             html.append("<td>").append(transaction.getTime().format(timeFormatter)).append("</td>");
             html.append("<td>").append(transaction.getDescription()).append("</td>");
             html.append("<td>").append(transaction.getVendor()).append("</td>");
-            html.append("<td>").append(String.format("%.2f",transaction.getAmount())).append("</td>");
+            if (transaction.getAmount() < 0) {
+                html.append("<td style= 'color:red;'>").append(String.format("%.2f", transaction.getAmount())).append("</td>");
+            } else {
+                html.append("<td>").append(String.format("%.2f", transaction.getAmount())).append("</td>");
+
+            }
             html.append("</tr>\n");
         }
         try {
@@ -584,25 +589,25 @@ public class Main {
             System.out.println("Amount: " + " Not Specified");
         }
 
-        for(Transaction transaction : transactions){
+        for (Transaction transaction : transactions) {
             boolean matches = true;
 
-            if(startDate != null && transaction.getDate().isBefore(startDate)){
+            if (startDate != null && transaction.getDate().isBefore(startDate)) {
                 matches = false;
             }
-            if(endDate != null && transaction.getDate().isAfter(endDate)){
+            if (endDate != null && transaction.getDate().isAfter(endDate)) {
                 matches = false;
             }
-            if(description != null && !transaction.getDescription().equalsIgnoreCase(description)){
+            if (description != null && !transaction.getDescription().equalsIgnoreCase(description)) {
                 matches = false;
             }
-            if(vendor != null && !transaction.getVendor().equalsIgnoreCase(vendor)){
+            if (vendor != null && !transaction.getVendor().equalsIgnoreCase(vendor)) {
                 matches = false;
             }
-            if(amount != null && transaction.getAmount() != amount){
+            if (amount != null && transaction.getAmount() != amount) {
                 matches = false;
             }
-            if(matches){
+            if (matches) {
                 System.out.println(transaction);
             }
 
