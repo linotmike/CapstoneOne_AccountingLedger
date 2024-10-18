@@ -25,11 +25,11 @@ public class Main {
         String mainMenuCommand;
 
         do {
-            System.out.println("Hello welcome to Account Ledger CLI Application");
-            System.out.println("What would you like to do?");
-            System.out.println("D) Add a deposit");
-            System.out.println("P) Make Payment");
-            System.out.println("L) Ledger");
+            System.out.println("Hello welcome to Account Ledger CLI Application\n");
+            System.out.println("What would you like to do?\n");
+            System.out.println("D) Add a deposit\n");
+            System.out.println("P) Make Payment\n");
+            System.out.println("L) Ledger\n");
             System.out.println("X) Exit");
             try {
                 mainMenuCommand = commandScanner.nextLine().toLowerCase().trim();
@@ -64,12 +64,12 @@ public class Main {
         String subMenuCommand;
 
         do {
-            System.out.println("Which entry would you like to see?");
-            System.out.println("A) All");
-            System.out.println("D) Deposit");
-            System.out.println("P) Payments");
-            System.out.println("R) Reports");
-            System.out.println("H) Home");
+            System.out.println("Which entry would you like to see?\n");
+            System.out.println("A) All\n");
+            System.out.println("D) Deposit\n");
+            System.out.println("P) Payments\n");
+            System.out.println("R) Reports\n");
+            System.out.println("H) Home\n");
 
             try {
                 subMenuCommand = commandScanner.nextLine().toLowerCase().trim();
@@ -105,15 +105,15 @@ public class Main {
     public static void reportsMenu() {
         int reportsMenuCommand;
         do {
-            System.out.println("Welcome to the Reports Screen");
-            System.out.println("Please select a report screen to run");
-            System.out.println("1) Month to Date");
-            System.out.println("2) previous Month");
-            System.out.println("3) Year to Date");
-            System.out.println("4) previous Years");
-            System.out.println("5) Search by vendor");
-            System.out.println("6) Custom Search");
-            System.out.println("0) Back");
+            System.out.println("Welcome to the Reports Screen\n");
+            System.out.println("Please select a report screen to run\n");
+            System.out.println("1) Month to Date\n");
+            System.out.println("2) previous Month\n");
+            System.out.println("3) Year to Date\n");
+            System.out.println("4) previous Years\n");
+            System.out.println("5) Search by vendor\n");
+            System.out.println("6) Custom Search\n");
+            System.out.println("0) Back\n");
             try {
                 reportsMenuCommand = commandScanner.nextInt();
 
@@ -154,7 +154,6 @@ public class Main {
 
         } while (reportsMenuCommand != 0);
     }
-
 
     public static void loadTransactionFromFile() {
 
@@ -200,6 +199,7 @@ public class Main {
     public static void addDeposit() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
+//        inputScanner.nextLine();
 //        commandScanner.nextLine();
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
@@ -249,6 +249,8 @@ public class Main {
     public static void makePayment() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
+//        inputScanner.nextLine();
+//        commandScanner.nextLine();
         commandScanner.nextLine();
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
@@ -357,7 +359,7 @@ public class Main {
 
             if ((transaction.getDate().isEqual(startOfMonth) || transaction.getDate().isAfter(startOfMonth)
                     && (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate)))) {
-                System.out.println(transaction);
+                System.out.println(transaction+ "\n");
 
 
             }
@@ -394,7 +396,7 @@ public class Main {
             LocalDate transactionDate = transaction.getDate();
 
             if (transactionDate.getMonthValue() == previousMonth && transactionDate.getYear() == previousYear) {
-                System.out.println(transaction);
+                System.out.println(transaction + "\n");
             }
 
 
@@ -416,7 +418,7 @@ public class Main {
             Transaction transaction = transactions.get(i);
             if ((transaction.getDate().isEqual(startOfYear) || transaction.getDate().isAfter(startOfYear)) &&
                     (transaction.getDate().isEqual(currentDate) || transaction.getDate().isBefore(currentDate))) {
-                System.out.println(transaction);
+                System.out.println(transaction + "\n");
             }
 
 
@@ -462,7 +464,7 @@ public class Main {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             if (transaction.getVendor().equalsIgnoreCase(response)) {
-                System.out.println(transaction);
+                System.out.println(transaction + "\n");
             }
         }
 
@@ -608,7 +610,7 @@ public class Main {
                 matches = false;
             }
             if (matches) {
-                System.out.println(transaction);
+                System.out.println(transaction +"\n");
             }
 
         }

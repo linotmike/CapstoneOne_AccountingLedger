@@ -29,6 +29,36 @@ View reports to see all entries or filtered transactions (by month, year, etc.).
 Exit the application when finished, with all transactions saved to a CSV file.
 ## Screenshot
 
+## Home Screen
+![Screenshot ](/src/demo/homescreen.png)
+## Adding Deposit
+![Screenshot ](/src/demo/deposit.png)
+## Adding Payment
+![Screenshot ](/src/demo/payment.png)
+## Ledger Screen
+![Screenshot ](/src/demo/ledgerscreen.png)
+## All entries
+![Screenshot ](/src/demo/allentries.png)
+## Show Deposits Transactions
+![Screenshot ](/src/demo/showdeposit.png)
+## Show payments Transactions
+![Screenshot ](/src/demo/showpayment.png)
+## Reports Screen
+![Screenshot ](/src/demo/reportsscreen.png)
+## Month To Date Transactions
+![Screenshot ](/src/demo/monthtodate.png)
+## Previous Month Transactions
+![Screenshot ](/src/demo/previousmonth.png)
+## Year To Date Transactions
+![Screenshot ](/src/demo/yeartodate.png)
+## Previous Year Transactions
+![Screenshot ](/src/demo/previousyears.png)
+## Search By Vendor
+![Screenshot ](/src/demo/previousmonth.png)
+## Custom Search
+![Screenshot ](/src/demo/customsearch.png)
+
+
 
 
 
@@ -65,7 +95,8 @@ Exit the application when finished, with all transactions saved to a CSV file.
 <li>The transactions.csv file in the project directory, or it will be created upon the first transaction.</li>
 </ul>
 </ul>
-------------------
+
+--------------------
 
 
 ## License
