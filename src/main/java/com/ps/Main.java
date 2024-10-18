@@ -20,6 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
         loadTransactionFromFile();
+//        loadHtml();
         String mainMenuCommand;
 
         do {
@@ -223,10 +224,12 @@ public class Main {
                     deposit.getVendor(),
                     deposit.getAmount()
             ));
+
             bufferedWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        loadHtml();
 
 
     }
@@ -269,11 +272,13 @@ public class Main {
                     payment.getVendor(),
                     payment.getAmount()
             ));
+
             bufferedWriter.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        loadHtml();
     }
 
     public static void allEntries() {
@@ -397,6 +402,40 @@ public class Main {
 
     }
 
+    public static void loadHtml() {
+//        loadTransactionFromFile();
+
+        StringBuilder html = new StringBuilder();
+        for (Transaction transaction : transactions) {
+            html.append("<tr>");
+            html.append("<td>").append(transaction.getDate()).append("</td>");
+            html.append("<td>").append(transaction.getTime()).append("</td>");
+            html.append("<td>").append(transaction.getDescription()).append("</td>");
+            html.append("<td>").append(transaction.getVendor()).append("</td>");
+            html.append("</tr>\n");
+        }
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("web/transactions.html"));
+            StringBuilder strBuilder = new StringBuilder();
+            String input;
+            while ((input = bufferedReader.readLine()) != null) {
+                strBuilder.append(input).append("\n");
+            }
+            bufferedReader.close();
+//            String finalHtml = String.format(strBuilder.toString(), html.toString());
+            String finalHtml = strBuilder.toString().replace("<!-- %s -->", html.toString());
+
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("web/transactions.html"));
+            bufferedWriter.write(finalHtml);
+            System.out.println(finalHtml);
+            bufferedWriter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 //public static void previousMonth() {
