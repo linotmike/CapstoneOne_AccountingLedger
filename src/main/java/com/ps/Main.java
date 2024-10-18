@@ -226,7 +226,7 @@ public class Main {
 
         Transaction deposit = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactions.add(deposit);
-        System.out.println("Deposit added successfully " + deposit);
+        System.out.println("Deposit added successfully\n " + deposit);
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
             bufferedWriter.write(String.format("\n%s|%s|%s|%s|%f",
@@ -274,7 +274,7 @@ public class Main {
         String formattedTime = time.format(tf);
         Transaction payment = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, -amount);
         transactions.add(payment);
-        System.out.println("Payment successfully made: " + payment);
+        System.out.println("Payment successfully made:\n " + payment);
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
