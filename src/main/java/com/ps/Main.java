@@ -158,6 +158,10 @@ public class Main {
             String firstLine = bufferedReader.readLine();
             String input;
             while ((input = bufferedReader.readLine()) != null) {
+                input = input.trim();
+                if (input.isEmpty()) {
+                    continue;
+                }
                 String[] transactionsArr = input.split("\\|");
                 if (transactionsArr.length != 5) {
                     System.out.println("Invalid Format " + input);
@@ -169,7 +173,9 @@ public class Main {
                     LocalTime time = LocalTime.parse(transactionsArr[1].trim());
                     String description = transactionsArr[2];
                     String vendor = transactionsArr[3];
-                    double amount = Double.parseDouble(transactionsArr[4]);
+                    String amountArr = transactionsArr[4];
+                    double amount = Double.parseDouble(amountArr);
+
 
                     transactions.add(new Transaction(date, time, description, vendor, amount));
 
@@ -387,7 +393,7 @@ public class Main {
 
 
         }
-            Collections.reverse(transactions);
+        Collections.reverse(transactions);
     }
 
     public static void yearToDate() {
@@ -462,7 +468,7 @@ public class Main {
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("web/transactions.html"));
             bufferedWriter.write(finalHtml);
-            System.out.println(finalHtml);
+//            System.out.println(finalHtml);
             bufferedWriter.close();
 
         } catch (Exception e) {
