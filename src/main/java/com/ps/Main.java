@@ -244,6 +244,7 @@ public class Main {
     public static void makePayment() {
         System.out.println("Enter the Description");
         String description = inputScanner.nextLine();
+        commandScanner.nextLine();
         System.out.println("Enter the vendor");
         String vendor = inputScanner.nextLine();
         double amount;
