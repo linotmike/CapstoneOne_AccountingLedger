@@ -132,7 +132,7 @@ public class Main {
                     yearToDate();
                     break;
                 case 4:
-                    //previousYears();
+                    previousYear();
                     break;
                 case 5:
                     //SearchByVendor();
@@ -398,6 +398,20 @@ public class Main {
     }
 
     public static void previousYear() {
+        LocalDate currentDate = LocalDate.now();
+        int currentYear = currentDate.getYear();
+        int previousYear = currentYear - 1;
+
+        if(transactions.isEmpty()){
+            System.out.println("There are no transactions");
+
+        }
+            for(int i = 0; i <transactions.size(); i++){
+                Transaction transaction = transactions.get(i);
+                if(transaction.getDate().getYear() == previousYear){
+                    System.out.print(transaction + "\n");
+                }
+            }
 
 
     }
