@@ -471,14 +471,16 @@ public class Main {
 
     public static void loadHtml() {
 //        loadTransactionFromFile();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         StringBuilder html = new StringBuilder();
         for (Transaction transaction : transactions) {
             html.append("<tr>");
             html.append("<td>").append(transaction.getDate()).append("</td>");
-            html.append("<td>").append(transaction.getTime()).append("</td>");
+            html.append("<td>").append(transaction.getTime().format(timeFormatter)).append("</td>");
             html.append("<td>").append(transaction.getDescription()).append("</td>");
             html.append("<td>").append(transaction.getVendor()).append("</td>");
+            html.append("<td>").append(String.format("%.2f",transaction.getAmount())).append("</td>");
             html.append("</tr>\n");
         }
         try {
