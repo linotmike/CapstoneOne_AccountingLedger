@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -285,11 +286,13 @@ public class Main {
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
         } else {
+            Collections.reverse(transactions);
             for (Transaction transaction : transactions) {
                 System.out.println(transaction);
 
             }
         }
+        Collections.reverse(transactions);
 
 
     }
@@ -297,8 +300,10 @@ public class Main {
     public static void showDeposit() {
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
+            return;
 
         }
+        Collections.reverse(transactions);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             if (transaction.getAmount() > 0) {
@@ -307,13 +312,16 @@ public class Main {
 
             }
         }
+        Collections.reverse(transactions);
 
     }
 
     public static void showPayments() {
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
+            return;
         }
+        Collections.reverse(transactions);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             if (transaction.getAmount() < 0) {
@@ -321,6 +329,7 @@ public class Main {
                 System.out.println(transaction);
             }
         }
+        Collections.reverse(transactions);
     }
 
     public static void monthToDate() {
@@ -328,7 +337,9 @@ public class Main {
         LocalDate startOfMonth = currentDate.withDayOfMonth(1);// first day of the month
         if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
+            return;
         }
+        Collections.reverse(transactions);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
 
@@ -339,6 +350,7 @@ public class Main {
 
             }
         }
+        Collections.reverse(transactions);
     }
 
     public static void previousMonth() {
@@ -360,8 +372,10 @@ public class Main {
 
         if (transactions.isEmpty()) {
             System.out.println("There are no transaction");
+            return;
 
         }
+        Collections.reverse(transactions);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
 
@@ -373,6 +387,7 @@ public class Main {
 
 
         }
+            Collections.reverse(transactions);
     }
 
     public static void yearToDate() {
@@ -384,6 +399,7 @@ public class Main {
             return;
 
         }
+        Collections.reverse(transactions);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             if ((transaction.getDate().isEqual(startOfYear) || transaction.getDate().isAfter(startOfYear)) &&
@@ -393,6 +409,7 @@ public class Main {
 
 
         }
+        Collections.reverse(transactions);
 
 
     }
@@ -402,16 +419,19 @@ public class Main {
         int currentYear = currentDate.getYear();
         int previousYear = currentYear - 1;
 
-        if(transactions.isEmpty()){
+        if (transactions.isEmpty()) {
             System.out.println("There are no transactions");
+            return;
 
         }
-            for(int i = 0; i <transactions.size(); i++){
-                Transaction transaction = transactions.get(i);
-                if(transaction.getDate().getYear() == previousYear){
-                    System.out.print(transaction + "\n");
-                }
+        Collections.reverse(transactions);
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction.getDate().getYear() == previousYear) {
+                System.out.print(transaction + "\n");
             }
+        }
+        Collections.reverse(transactions);
 
 
     }
