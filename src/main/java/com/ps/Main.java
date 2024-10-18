@@ -415,7 +415,7 @@ public class Main {
             html.append("</tr>\n");
         }
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("web/transactions.html"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("web/transactions_template.html"));
             StringBuilder strBuilder = new StringBuilder();
             String input;
             while ((input = bufferedReader.readLine()) != null) {
