@@ -112,6 +112,7 @@ public class Main {
             System.out.println("3) Year to Date");
             System.out.println("4) previous Years");
             System.out.println("5) Search by vendor");
+            System.out.println("6) Custom Search");
             System.out.println("0) Back");
             try {
                 reportsMenuCommand = commandScanner.nextInt();
@@ -138,6 +139,9 @@ public class Main {
                 case 5:
                     searchByVendor();
                     break;
+                case 6:
+                    customSearch();
+                    break;
                 case 0:
                     System.out.println("Going back...");
                     break;
@@ -150,6 +154,7 @@ public class Main {
 
         } while (reportsMenuCommand != 0);
     }
+
 
     public static void loadTransactionFromFile() {
 
@@ -442,25 +447,26 @@ public class Main {
 
 
     }
-    public static void searchByVendor(){
+
+    public static void searchByVendor() {
 //        String response = 
         System.out.println("Please enter the name of the vendor");
         commandScanner.nextLine();
         String response = commandScanner.nextLine();
         System.out.println("The name of the vendor: " + response);
-        
-        if(response.isEmpty()){
+
+        if (response.isEmpty()) {
             System.out.println("There is no vendor by that name");
-            
+
         }
-         for(int i = 0; i < transactions.size(); i++){
-             Transaction transaction = transactions.get(i);
-             if(transaction.getVendor().equalsIgnoreCase(response)){
-                 System.out.println(transaction);
-             }
-         }
-        
-        
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction.getVendor().equalsIgnoreCase(response)) {
+                System.out.println(transaction);
+            }
+        }
+
+
     }
 
     public static void loadHtml() {
@@ -495,6 +501,111 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static void customSearch() {
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+        String description = null;
+        String vendor = null;
+        Double amount = null;
+
+        System.out.println("Would you like to include start date in your custom search? 1) yes 2) No");
+        int response = commandScanner.nextInt();
+        commandScanner.nextLine();
+        if (response == 1) {
+            System.out.println("Enter the start date (yyyy-mm-dd)");
+            String startStr = commandScanner.nextLine().trim();
+            startDate = LocalDate.parse(startStr);
+        }
+
+        System.out.println("Would you like to include end date in your custom search? 1) yes 2) No");
+        response = commandScanner.nextInt();
+        commandScanner.nextLine();
+        if (response == 1) {
+            System.out.println("Enter the end date (yyyy-mm-dd)");
+            String endStr = commandScanner.nextLine().trim();
+            endDate = LocalDate.parse(endStr);
+        }
+
+        System.out.println("Would you like to include a description in your search 1) yes 2)No");
+        response = commandScanner.nextInt();
+        commandScanner.nextLine();
+        if (response == 1) {
+            System.out.println("Enter the description");
+            description = commandScanner.nextLine().trim();
+        }
+
+        System.out.println("Would you like to include a vendor in your search 1) yes 2)No");
+        response = commandScanner.nextInt();
+        commandScanner.nextLine();
+        if (response == 1) {
+            System.out.println("Enter the name of the vendor");
+            vendor = commandScanner.nextLine().trim();
+        }
+
+        System.out.println("Would you like to include an amount in your search 1) yes 2)No");
+        response = commandScanner.nextInt();
+        commandScanner.nextLine();
+        if (response == 1) {
+            System.out.println("Enter the amount");
+            amount = commandScanner.nextDouble();
+            commandScanner.nextLine();
+        }
+
+        System.out.println("\nSearching based on the information provided\n\n");
+
+        if (startDate != null) {
+            System.out.println("Start Date: " + startDate);
+        } else {
+            System.out.println("Start Date: " + " Not Specified");
+        }
+        if (endDate != null) {
+            System.out.println("End Date: " + endDate);
+        } else {
+            System.out.println("End Date: " + " Not Specified");
+        }
+        if (description != null) {
+            System.out.println("Description: " + description);
+        } else {
+            System.out.println("Description: " + " Not Specified");
+        }
+        if (vendor != null) {
+            System.out.println("Vendor: " + vendor);
+        } else {
+            System.out.println("Vendor: " + " Not Specified");
+        }
+        if (amount != null) {
+            System.out.println("Amount: " + amount);
+        } else {
+            System.out.println("Amount: " + " Not Specified");
+        }
+
+        for(Transaction transaction : transactions){
+            boolean matches = true;
+
+            if(startDate != null && transaction.getDate().isBefore(startDate)){
+                matches = false;
+            }
+            if(endDate != null && transaction.getDate().isAfter(endDate)){
+                matches = false;
+            }
+            if(description != null && !transaction.getDescription().equalsIgnoreCase(description)){
+                matches = false;
+            }
+            if(vendor != null && !transaction.getVendor().equalsIgnoreCase(vendor)){
+                matches = false;
+            }
+            if(amount != null && transaction.getAmount() != amount){
+                matches = false;
+            }
+            if(matches){
+                System.out.println(transaction);
+            }
+
+        }
+
 
     }
 
