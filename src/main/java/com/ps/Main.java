@@ -136,7 +136,7 @@ public class Main {
                     previousYear();
                     break;
                 case 5:
-                    //SearchByVendor();
+                    searchByVendor();
                     break;
                 case 0:
                     System.out.println("Going back...");
@@ -440,6 +440,26 @@ public class Main {
         Collections.reverse(transactions);
 
 
+    }
+    public static void searchByVendor(){
+//        String response = 
+        System.out.println("Please enter the name of the vendor");
+        commandScanner.nextLine();
+        String response = commandScanner.nextLine();
+        System.out.println("The name of the vendor: " + response);
+        
+        if(response.isEmpty()){
+            System.out.println("There is no vendor by that name");
+            
+        }
+         for(int i = 0; i < transactions.size(); i++){
+             Transaction transaction = transactions.get(i);
+             if(transaction.getVendor().equalsIgnoreCase(response)){
+                 System.out.println(transaction);
+             }
+         }
+        
+        
     }
 
     public static void loadHtml() {
