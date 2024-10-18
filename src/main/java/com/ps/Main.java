@@ -606,9 +606,13 @@ public class Main {
             if (vendor != null && !transaction.getVendor().equalsIgnoreCase(vendor)) {
                 matches = false;
             }
-            if (amount != null && transaction.getAmount() != amount) {
+//            if (amount != null && transaction.getAmount() != amount) {
+//                matches = false;
+//            }
+            if (amount != null && Math.abs(transaction.getAmount() - amount) > 0.00001) {
                 matches = false;
             }
+
             if (matches) {
                 System.out.println(transaction +"\n");
             }
